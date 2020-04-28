@@ -1,0 +1,28 @@
+{
+  "contactos": [
+    {
+      "id": 1,
+      "nombre": "Alejandro",
+      "apellido": "Corado",
+      "estado": 1,
+      "def": 1
+    }
+  ],
+  "grupos": [
+    {
+      "id": 1,
+      "nombre": "Grupo 1",
+      "estado": 1
+    },
+    {
+      "id": 2,
+      "nombre": "ICG-OP",
+      "estado": 1
+    },
+    {
+      "nombre": "grupo de prueba",
+      "estado": 1,
+      "id": 3
+    }
+  ]
+}
