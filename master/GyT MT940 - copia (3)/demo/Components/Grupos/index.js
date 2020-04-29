@@ -29,6 +29,8 @@ var children = [];
 
 var destinos=[];
 
+var table=[];
+
 
 class Formularios extends Component {
 	constructor(props, context) {
@@ -36,6 +38,7 @@ class Formularios extends Component {
 	const { router, params, location, routes } = this.props
 	this.state = {
 		response:null,
+grup:[],
 		respuesta:[],
 		body:[],
 		destination:[],
@@ -49,13 +52,13 @@ class Formularios extends Component {
 		selected:undefined,
 		fileName:'Seleccionar archivo csv',
 		keycloakConfig: {
-		"url":"http://localhost:8080/auth/",
+		"url":"http://104.198.180.31:8080/auth/",
 		"clientId":"texter",
 		  "ssl-required": "external",
 		   "verify-token-audience": true,
 		"realm":"master",
 				  "credentials": {
-    "secret": "61d7b166-f528-4a5e-9a27-fb6de1a35db6"
+    "secret":"7660ce23-3ee9-4740-9b28-102913bb44d6"
   }
 },
 		baseApi: 'http://172.19.12.12:8080',
@@ -136,7 +139,7 @@ class Formularios extends Component {
 	this.cerrarModalCrear = this.cerrarModalCrear.bind(this);
 	this.formatBotonEditar = this.formatBotonEditar.bind(this);
 	this.showModalEditar = this.showModalEditar.bind(this);
-	this.crearCuenta = this.crearCuenta.bind(this);
+	
 	this.add = this.add.bind(this);
 	this.remove = this.remove.bind(this);
 	this.handleFiles = this.handleFiles.bind(this);
@@ -148,6 +151,7 @@ class Formularios extends Component {
 		this.creategroup=this.creategroup.bind(this);
 		this.cargargrupos=this.cargargrupos.bind(this);
 			this.valeght=this.valeght.bind(this);
+this.insertcontactos=this.insertcontactos.bind(this);
 	//Configuracion del selecctor de los rows y el color en que se marcan
 	this.selectRowProp = {
 		mode: 'radio',
@@ -194,16 +198,17 @@ llenarGridData(){
 		filtro = 'propios:"'+idEntidad+'"';
 	}else{}
 	try{
+
 		axios.get('http://localhost:1010/grupos',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
 		})
-			.then(res => {
+			.then(response => {
 				this.setState({
-					 data: res.data
+					 data: response
 				});
-console.log(JSON.stringify(this.state.data));
+
 			})
 	}catch(err){
 		console.error('##Error en el get para llenar la tabla: ' + err);
@@ -300,71 +305,12 @@ cerrarModalCrear(){
 		console.error("###Error en la funcion cerrarModalCrear: "+err);
 	}
 }
-crearCuenta(){
 
-
-	
-	try{
-		const { form } = this.props;
-	var text=form.getFieldValue('textoarea');
-	console.log(text);
-		console.log("Crear cuenta --->");
-		message.loading(' Procesando..');
-		var newObj = {};
-		if (this.state.file == null){
-			message.warning("No se ha cargado archivo de cuentas",3);
-		}else{
-			const form = this.props.form;
-			form.validateFields((err, values) => {
-				if (err) {
-					console.error('#ERROR No se han llenado todos los datos del form: '+ err);
-					return;
-				}
-				console.log(values);
-			});
-			newObj.nombreArchivo = this.state.file.fileList[0].name;
-			newObj.base64 = this.state.file.base64;
-			axios.post(this.state.baseApi + '/cuentas',newObj,{
-				headers: {
-					'Authorization': 'Bearer ' + Cookies("token")
-				}
-			})
-				.then(res => {
-					if (res.status == 200){
-						console.log(res);
-						if (res.data.codigo == 200){
-							this.setState({crearVisible:false,file:null,fileName:"Seleccione archivo"});
-							this.llenarGridData();
-							message.destroy();
-							message.success(res.data.mensaje,5);
-						}else if (res.data.codigo == 400){
-							this.setState({crearVisible:false,file:null,fileName:"Seleccione archivo"});
-							message.destroy();
-							message.warning(res.data.mensaje,5);
-						}else if (res.data.codigo == 500){
-							this.setState({crearVisible:false,file:null,fileName:"Seleccione archivo"});
-							message.destroy();
-							message.error(res.data.mensaje,5);
-						}
-					}else{
-						message.warning("No se ha podido cargar el archivo de cuentas",3);
-					}
-					
-				}).catch(error => {
-					console.log(error);
-					console.log(error.response);
-					message.warning("No se ha podido cargar el archivo, intente nuevamente");
-				});
-		}
-	}catch(err){
-		console.error("###Error en la funcion crearCuenta: "+err);
-	}
-}
 formatBotonCrear(onClick){
 	try{
 		return (
 			<InsertButton
-				btnText='Crear Mensaje'
+				btnText='Nuevo'
 				btnContextual='btn-primary'
 				className='my-custom-class'
 				btnGlyphicon='glyphicon-edit'
@@ -446,9 +392,23 @@ onChanges ({ target: { value } }) {
 insertcontactos(grupo)
 {
 
+fetch('http://localhost:1010/grupos')
+			.then(data => {
+				this.setState({
+					 grup: data
+				});
+console.log(data)
+
+			})
+
+
+
 try{
+console.log(destinos);
 
 
+
+/*
 for(var k=0; k<destinos.length; k++)
 {
 var cadena=destinos[k].substr(0,1);
@@ -466,6 +426,8 @@ if(cadena=="C")
 
 }
 
+
+
  datos.push({ 
         "destination"    : exc,
         "typedestination" : type,
@@ -474,7 +436,11 @@ if(cadena=="C")
   
     });
 
+*/
 
+
+
+/*
 fetch('http://backendtexter.190.190.70.182.nip.io/grupos/22/contactos/'+exc,{method:'POST',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(objeto) })
 .then(res => {
 				this.setState({
@@ -498,11 +464,15 @@ else
 }
 
 			})
+
+*/
 	}
 catch(err){
 		message.warning("Error en el envío",5);
 		console.error('##Error en el envio de mensaje: ' + err);
 	}
+
+
 
 }
 
@@ -543,10 +513,15 @@ if(res.status==201)
 {
 
 	message.info("Creado");
+console.log(re2.payload);
 
 
 
 
+//funcion get id grupo
+
+
+this.insertcontactos();
 	
 
 }
@@ -575,7 +550,7 @@ if(res.status==201)
 }
 
 
-
+/*
 cargargrupos()
 {
 	var token = Cookies("token");
@@ -608,7 +583,7 @@ cargargrupos()
 
 }
 
-
+*/
 
 
 
@@ -624,8 +599,8 @@ var token = Cookies("token");
 
 	try{
 
-console.log("__________________________________________________________________________cargando contactos");
-		axios.get('https://localhost:1010/contactos',{
+console.log("cargando contactos");
+		axios.get('http://localhost:1010/contactos',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -638,8 +613,8 @@ console.log("___________________________________________________________________
 
 
 
-
 				for (var i = 0; i<Object.keys(contacts).length; i++) {
+
 
 
   children.push(<Option key={"C"+contacts.data[i].id}><Tag color="cyan">Contacto -></Tag>{contacts.data[i].nombre} {contacts.data[i].apellido}</Option>);
@@ -688,7 +663,7 @@ message.warning('el numero de caracteres eccedidos');
 this.cargacontactos();
 
 
-this.cargargrupos();
+this.llenarGridData();
 
 
 
@@ -797,23 +772,24 @@ const { value } = this.state;
 		);
 	});
 
-const {data} =this.state;
+
+
 		return (
 			<div className="contenedorPrincipal">
 				<Row style={{height:"90vh"}}>
 					<Col span={24}>
-						<Divider orientation="left">Mensajes</Divider>
+						<Divider orientation="left">Grupos</Divider>
 						<Row>
 							<Col span={22} offset={1}>
-								<BootstrapTable data={data} striped={true} pagination={ true } hover={true} selectRow={ this.selectRowProp } options={options}
+								<BootstrapTable data={this.state.data} striped={true} pagination={ true } hover={true} selectRow={ this.selectRowProp } options={options}
 								insertRow
 								exportCSV
 								deleteRow
 								search
 								>
 									<TableHeaderColumn width='7%' dataField="id" isKey={true} dataAlign="center" dataSort={true} hidden="none">Id</TableHeaderColumn>
-									<TableHeaderColumn width='18%' dataField="nombre" dataAlign="center" dataSort={true} hidden="none">Cuenta</TableHeaderColumn>
-									<TableHeaderColumn width='18%' dataField="estado" dataAlign="center" dataSort={true} hidden="none">Remitente</TableHeaderColumn>
+									<TableHeaderColumn width='18%' dataField="nombre" dataAlign="center" dataSort={true} hidden="none">Nombre</TableHeaderColumn>
+									<TableHeaderColumn width='18%' dataField="estado" dataAlign="center" dataSort={true} hidden="none">Estado</TableHeaderColumn>
 									<TableHeaderColumn width='18%' dataField="destinatario" dataAlign="center" dataSort={true} hidden="none">Destinatario</TableHeaderColumn>
 									<TableHeaderColumn width='22%' dataField="tipoEnvio" dataAlign="center" dataSort={true} hidden="none">Tipo envio</TableHeaderColumn>
 									<TableHeaderColumn width='25%' dataField="correos" onClick={this.expandComponent} dataAlign="center" hidden="none">Destinatarios</TableHeaderColumn>

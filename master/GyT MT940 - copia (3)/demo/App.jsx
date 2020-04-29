@@ -24,13 +24,12 @@ class App extends Component{
 	logo:'public/default.jpg',
 	authenticated:false,
 	keycloakConfig: {
-		"url":"http://localhost:8080/auth/",
+		"url":"http://104.198.180.31:8080/auth/",
 		"clientId":"texter",
 		  "ssl-required": "external",
 		   "verify-token-audience": true,
-		"realm":"master",
-				  "credentials": {
-    "secret": "61d7b166-f528-4a5e-9a27-fb6de1a35db6"
+		"realm":"master","credentials": {
+    "secret": "7660ce23-3ee9-4740-9b28-102913bb44d6"
   },
 	}
 };
@@ -53,7 +52,7 @@ class App extends Component{
 getGroupId(userID,token){
 	try{
 		console.log("Ejecucuion de get users");
-		axios.get('http://172.19.12.15:8080/auth/admin/realms/plantilla/users/'+userID+'/groups ',{
+		axios.get('http://104.198.180.31:8080/auth/admin/realms/master/users/c511ad70-da9f-4a15-9833-a7b8c165eea8/groups',{
 			headers: {
 				'Authorization': 'Bearer ' + token
 			}
@@ -70,7 +69,7 @@ getGroupId(userID,token){
 //Funcion para hacer el get a keycloak y traer la descripcion del grupo al que pertence el usuario en caso de ser de banco
 getGroup(grupId,token){
 	try{
-		axios.get('http://172.19.12.15:8080/auth/admin/realms/plantilla/groups/9362cfc3-0da8-444e-8ea4-32d3995a8a5e',{
+		axios.get('http://104.198.180.31:8080/auth/admin/realms/master/groups/589a955b-67a1-491e-87d6-0900afc822be',{
 			headers: {
 				'Authorization': 'Bearer ' + token
 			}
