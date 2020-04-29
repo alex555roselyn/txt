@@ -111,7 +111,7 @@
   ],
   "dependencies": {
     "antd": "^3.6.1",
-    "auth0-js": "^9.7.3",
+    "auth0-js": "^9.13.2",
     "axios": "^0.18.0",
     "base-64": "^0.1.0",
     "bootstrap": "^3.3.2",
