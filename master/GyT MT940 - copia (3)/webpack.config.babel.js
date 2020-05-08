@@ -130,7 +130,7 @@ if (TARGET === 'start') {
 		proxy: {
 			'/api': {
 				context: () => true,
-				target: 'http://localhost:3000',
+				target: 'http://localhost:3002',
 				changeOrigin: true,
 				pathRewrite: {
 					'^/api': ''
@@ -142,7 +142,7 @@ if (TARGET === 'start') {
 		inline: true,
 		progress: true,
 		host: 'localhost',
-		port: 3001,
+		port: 3002,
 		stats: 'errors-only',
 		headers: {
 			'X-Frame-Options': 'SAMEORIGIN',

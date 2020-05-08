@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { Component } from 'react';
-import {  Button, Modal, Row, Col, Divider,Form, message,Icon, Input, Radio, InputNumber, Alert, Upload, Select, Dropdown, Menu, DatePicker, Table, Tag, Popover, Tooltip} from 'antd';
+import {  Button, Typography, Modal, Row, Col, Divider,Form, message,Icon, Input, Radio, InputNumber, Alert, Upload, Select, Dropdown, Menu, DatePicker, Table, Tag, Popover, Tooltip} from 'antd';
 const { TextArea } = Input;
 const confirm = Modal.confirm;
 import B from '../../funciones';
@@ -27,6 +27,8 @@ var children = [];
 
 
 
+
+
 var destinos=[];
 
 
@@ -37,6 +39,7 @@ class Formularios extends Component {
 	this.state = {
 		response:null,
 		body:[],
+		longitud:null,
 		destination:[],
 		value:[],
 		contacts:[],
@@ -163,7 +166,7 @@ selectRow(row, isSelected){
 			 rowSelected: filaSeleccionada,
 			 selected:row
 		});
-		console.log("Fin de la ejecucion");
+		//console.log("Fin de la ejecucion");
 	}catch(err){
 		console.error('##Error en la funcion para guardar el item que se ha seleccionado : ' + err);
 	}
@@ -185,8 +188,8 @@ llenarGridData(){
 	var token = Cookies("token");
 	var idEntidad = Cookies("groupID");
 	//console.error("idEntidad");
-	//console.log(idEntidad);
-	//console.log(token);
+	////console.log(idEntidad);
+	////console.log(token);
 	var filtro = '';
 	if (parseInt(idEntidad) != 0){
 		filtro = 'propios:"'+idEntidad+'"';
@@ -217,7 +220,7 @@ deleteCuentaApi(){
 		})
 			.then(res => {
 				//Logica de si funcionno
-				console.log(res);
+				//console.log(res);
 				if (res.status == 200){
 					this.llenarGridData();
 					message.destroy();
@@ -234,7 +237,7 @@ deleteCuentaApi(){
 }
 showModalEditar(){
 	try{
-		console.log("click en editar");
+		//console.log("click en editar");
 	}catch(err){
 		console.error("###Error en la funcion showModalEditar: "+err);
 	}
@@ -265,7 +268,7 @@ showModalCrear(){
 eliminarCuenta(){
 	try{
 		var that = this;
-		console.log(this.state.selected);
+		//console.log(this.state.selected);
 		if (this.state.selected == {} || this.state.selected == null || this.state.selected == undefined){
 			message.warning("Seleccione una cuenta !",3);
 		}else{
@@ -276,13 +279,13 @@ eliminarCuenta(){
 				okType: 'danger',
 				cancelText: 'No',
 				onOk() {
-					console.log('OK');
+					//console.log('OK');
 					//this.deleteCuentaApi;
-					console.log(that);
+					//console.log(that);
 					that.deleteCuentaApi();
 				},
 				onCancel() {
-					console.log('Cancel');
+					//console.log('Cancel');
 				},
 			});
 		}
@@ -304,8 +307,8 @@ crearCuenta(){
 	try{
 		const { form } = this.props;
 	var text=form.getFieldValue('textoarea');
-	console.log(text);
-		console.log("Crear cuenta --->");
+	//console.log(text);
+		//console.log("Crear cuenta --->");
 		message.loading(' Procesando..');
 		var newObj = {};
 		if (this.state.file == null){
@@ -317,7 +320,7 @@ crearCuenta(){
 					console.error('#ERROR No se han llenado todos los datos del form: '+ err);
 					return;
 				}
-				console.log(values);
+				//console.log(values);
 			});
 			newObj.nombreArchivo = this.state.file.fileList[0].name;
 			newObj.base64 = this.state.file.base64;
@@ -328,7 +331,7 @@ crearCuenta(){
 			})
 				.then(res => {
 					if (res.status == 200){
-						console.log(res);
+						//console.log(res);
 						if (res.data.codigo == 200){
 							this.setState({crearVisible:false,file:null,fileName:"Seleccione archivo"});
 							this.llenarGridData();
@@ -348,8 +351,8 @@ crearCuenta(){
 					}
 					
 				}).catch(error => {
-					console.log(error);
-					console.log(error.response);
+					//console.log(error);
+					//console.log(error.response);
 					message.warning("No se ha podido cargar el archivo, intente nuevamente");
 				});
 		}
@@ -417,14 +420,14 @@ handleFiles(files){
 	}
 }
 expandComponent(row){
-	console.log(row);
-	console.log("Click");
+	//console.log(row);
+	//console.log("Click");
 }
 //funcion para guardar los datos de destinatarios
  handleChange(values) {
-  //console.log(`selected ${values}`);
+  ////console.log(`selected ${values}`);
 
-//console.log(values.toString());
+////console.log(values.toString());
 
 destinos=values;
 
@@ -436,7 +439,7 @@ destinos=values;
 onChanges ({ target: { value } }) {
     this.setState({ value });
 
-//console.log("exc"+this.state.value);
+////console.log("exc"+this.state.value);
 
 
 
@@ -446,9 +449,9 @@ onChanges ({ target: { value } }) {
 
 sendmessage()
 {
-	console.log(destinos);
+	//console.log(destinos);
 	var {value}=this.state;
-console.log("exc"+value);
+//console.log("exc"+value);
 var token = Cookies("token");
 	
 	var body= JSON.stringify("destinos":destinos,
@@ -503,7 +506,7 @@ objeto.key="12345";
 objeto.label="GUITEXTERV2";
 objeto.message=value
  
-console.log(objeto);
+//console.log(objeto);
 
 
 fetch('http://172.19.12.15:999/api/message/',{method:'POST',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(objeto) })
@@ -517,7 +520,7 @@ fetch('http://172.19.12.15:999/api/message/',{method:'POST',headers:{'Content-Ty
 		
 				);
 
-console.log(this.state.response);
+//console.log(this.state.response);
 var re=this.state.response;
 if(res.status==200)
 {
@@ -548,25 +551,61 @@ cargargrupos()
 	var token = Cookies("token");
 
 		try{
-		axios.get('http://backendtexter.190.190.70.182.nip.io/grupos',{
+		axios.get('http://localhost:1012/grupos',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
 		})
 			.then(res => {
 				this.setState({
-					 grupos: res
+					 grupos: res,
+					 longitud:res.data.length
 				});
+
+
+
+
+const {longitud}=this.state;
+//console.log("la longitud es:_______________-"+longitud);
 
  const {grupos}=this.state;
 
- 		for (var j = 0; j<=Object.keys(grupos).length; j++) {
+
+
+			 		for (var j = 0; j<longitud; j++) {	
   children.push(<Option key={"G"+grupos.data[j].id}><Tag color="gold">Grupo -></Tag>{grupos.data[j].nombre}</Option>);
-  console.log()
+  //console.log(children)
+
+  /*for (var b = 10; b < 20; b++) {
+ children.push(<Option key={"G"+grupos.data[j].id}><Tag color="gold">Grupo -></Tag>{grupos.data[j].nombre}</Option>);
+
+
+
+}*/
 
 }
 
-			});
+//console.log(children);
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+			);
+
+
+
+
+
 	}catch(err){
 		console.error('##Error en el get para llenar la tabla: ' + err);
 	};
@@ -590,28 +629,67 @@ var token = Cookies("token");
 
 
 	try{
-		axios.get('http://backendtexter.190.190.70.182.nip.io/contactos',{
+		axios.get('http://localhost:1012/contactos',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
 		})
 		.then(response => {
 				this.setState({
-					 contacts: response
+					 contacts: response,
+					 longitud:response.data.length
 				});
 				const {contacts}=this.state;
 
 
+//Object.keys(contacts).length;
 
 
-				for (var i = 0; i<=Object.keys(contacts).length; i++) {
+
+const {longitud}=this.state;
+//console.log("la longitud es:_______________-"+longitud);
+
+				for (var i = 0; i<longitud; i++) {
 
 				
 
   children.push(<Option key={"C"+contacts.data[i].id}><Tag color="cyan">Contacto -></Tag>{contacts.data[i].nombre} {contacts.data[i].apellido}</Option>);
-console.log(this.state.contacts.data[i].id);
 
-console.log(children);
+
+
+
+/*
+
+  for (var b = 10; b < 20; b++) {
+ children.push(<Option key={"C"+contacts.data[i].id}><Tag color="cyan">Contacto -></Tag>{contacts.data[i].nombre} {contacts.data[i].apellido}</Option>);
+
+
+
+
+
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//console.log(this.state.contacts.data[i].id);
+
+//console.log(children);
 
   this.cargargrupos();
 
@@ -785,10 +863,12 @@ const { value } = this.state;
     style={{ width: '100%' }}
     placeholder="Please select"
     onChange={this.handleChange}
+    maxTagCount={1000}
 
   >
     {children}
   </Select>
+
 
 									<FormItem label="Descripción">
 <TextArea

@@ -13,6 +13,7 @@ import Cookies from 'js-cookie';
 import Flujo from './Components/Flujo';
 import Page404 from './Components/Page404';
 import Formularios from './Components/Grupos';
+import Contactos from './Components/Contactos';
 // Make allowances for gh-pages routing
 // main path is project name
 let mainPath = '/';
@@ -54,9 +55,10 @@ const routes = (
 	<Route path={mainPath} component={App}>
 		<IndexRoute component={Flujo} />
     <Route path="/transaction" component={Transaccion} onEnter={ rolesRutas } />
-		<Route path="/cuentas" component={Cuentas} onEnter={ rolesRutas } />
+		<Route path="/mensajes" component={Cuentas} onEnter={ rolesRutas } />
 		<Route path="/flujo" component={Flujo} onEnter={ rolesRutas } />
-		<Route path="/notificaciones" component={Formularios} onEnter={ rolesRutas } />
+		<Route path="/grupos" component={Formularios} onEnter={ rolesRutas } />
+		<Route path="/contactos" component={Contactos} onEnter={ rolesRutas } />
 		<Route path="*" component={Page404} />
 	</Route>
   );

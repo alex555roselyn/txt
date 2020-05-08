@@ -6,6 +6,114 @@
       "apellido": "Corado",
       "estado": 1,
       "def": 1
+    },
+    {
+      "nombre": "juan",
+      "apellido": "perez",
+      "estado": 1,
+      "id": 2
+    },
+    {
+      "nombre": "aa",
+      "apellido": [],
+      "estado": 1,
+      "id": 3
+    },
+    {
+      "nombre": "aa",
+      "apellido": [],
+      "estado": 1,
+      "id": 4
+    },
+    {
+      "nombre": "aa",
+      "apellido": [],
+      "estado": 1,
+      "id": 6
+    },
+    {
+      "nombre": "alejandro",
+      "apellido": "corado1",
+      "estado": 1,
+      "id": 9
+    },
+    {
+      "nombre": "juan",
+      "apellido": "lopez",
+      "estado": 1,
+      "id": 10
+    },
+    {
+      "nombre": "alejandro",
+      "apellido": [],
+      "estado": 1,
+      "id": 11
+    },
+    {
+      "nombre": "HOLA",
+      "apellido": "QUE TAL",
+      "estado": 1,
+      "id": 12
+    },
+    {
+      "nombre": "HOLA",
+      "apellido": "QUE TAL",
+      "estado": 0,
+      "id": 13
+    },
+    {
+      "nombre": "alejandro",
+      "apellido": "palma",
+      "estado": 1,
+      "id": 14
+    },
+    {
+      "nombre": "alejandro",
+      "apellido": "corado",
+      "estado": 1,
+      "id": 15
+    },
+    {
+      "nombre": "luis",
+      "apellido": "pan",
+      "estado": 1,
+      "id": 16
+    },
+    {
+      "nombre": "aaaa",
+      "apellido": "bbbb",
+      "estado": 1,
+      "id": 17
+    },
+    {
+      "nombre": "al",
+      "apellido": "pachino",
+      "estado": 1,
+      "id": 18
+    },
+    {
+      "nombre": "hi",
+      "apellido": "la",
+      "estado": 1,
+      "id": 19
+    },
+    {
+      "nombre": "z",
+      "apellido": "s",
+      "estado": 1,
+      "id": 20
+    },
+    {
+      "nombre": "nuevo grup",
+      "apellido": "nuevo grup",
+      "estado": 1,
+      "id": 21
+    },
+    {
+      "nombre": "alejandro",
+      "apellido": "corado",
+      "estado": 1,
+      "id": 22
     }
   ],
   "grupos": [
@@ -20,9 +128,14 @@
       "estado": 1
     },
     {
-      "nombre": "grupo de prueba",
+      "nombre": "hola",
       "estado": 1,
-      "id": 3
+      "id": 4
+    },
+    {
+      "nombre": "hola",
+      "estado": 1,
+      "id": 5
     }
   ]
 }

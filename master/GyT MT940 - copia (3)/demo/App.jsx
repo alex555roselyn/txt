@@ -29,7 +29,7 @@ class App extends Component{
 		  "ssl-required": "external",
 		   "verify-token-audience": true,
 		"realm":"master","credentials": {
-    "secret": "7660ce23-3ee9-4740-9b28-102913bb44d6"
+    "secret": "1960483a-0d67-4a7d-8294-d639a5c3d0b3"
   },
 	}
 };
@@ -51,15 +51,15 @@ class App extends Component{
 
 getGroupId(userID,token){
 	try{
-		console.log("Ejecucuion de get users");
-		axios.get('http://104.198.180.31:8080/auth/admin/realms/master/users/c511ad70-da9f-4a15-9833-a7b8c165eea8/groups',{
+		//console.log("Ejecucuion de get users");
+		axios.get('http://104.198.180.31:8080/auth/admin/realms/master/users/23db0599-8e00-4960-91d9-6df0ac4ca2ca/groups',{
 			headers: {
 				'Authorization': 'Bearer ' + token
 			}
 		})
 			.then(res => {
 				this.getGroup(res.data[0].id,token);
-				console.log(res.data[0].id,token);
+				//console.log(res.data[0].id,token);
 			})
 	}catch(err){
 		console.error('##Error get del grupo del usuario conectado: ' + err);
@@ -69,14 +69,14 @@ getGroupId(userID,token){
 //Funcion para hacer el get a keycloak y traer la descripcion del grupo al que pertence el usuario en caso de ser de banco
 getGroup(grupId,token){
 	try{
-		axios.get('http://104.198.180.31:8080/auth/admin/realms/master/groups/589a955b-67a1-491e-87d6-0900afc822be',{
+		axios.get('http://104.198.180.31:8080/auth/admin/realms/master/groups/c811e475-50f1-41d5-83a9-834d081bc314',{
 			headers: {
 				'Authorization': 'Bearer ' + token
 			}
 		}
 		).then(res => {
 				Cookies.remove("groupID");
-				Cookies("groupID",res.data.attributes.id[0]);
+				Cookies("groupID", res.data.attributes.id[0]);
 				this.setState({
 					logo:res.data.attributes.logo[0]
 				});
@@ -98,7 +98,7 @@ getMenuFunction(){
 if(1==1)
 {
 
-		menu = [{"titulo": "Mensajes","icon": "fa fa-envelope-open-o","enlace": "/cuentas"},{"titulo": "Grupos","icon": "fa fa-wpforms","enlace": "/notificaciones"},{"titulo": "Contactos","icon": "fa fa-address-book-o","enlace": "/contactos"},{"titulo": "Flujo de trabajo","icon": "fa fa-retweet","enlace": "/flujo"},{"titulo": "Normas","icon": "fa fa-list-ol","enlace": "/normas"},{"titulo": "Glosario","icon": "fa fa-book","enlace": "/glosario"}];
+		menu = [{"titulo": "Mensajes","icon": "fa fa-envelope-open-o","enlace": "/mensajes"},{"titulo": "Grupos","icon": "fa fa-wpforms","enlace": "/grupos"},{"titulo": "Contactos","icon": "fa fa-address-book-o","enlace": "/contactos"},{"titulo": "Flujo de trabajo","icon": "fa fa-retweet","enlace": "/flujo"},{"titulo": "Normas","icon": "fa fa-list-ol","enlace": "/normas"},{"titulo": "Glosario","icon": "fa fa-book","enlace": "/glosario"}];
 }
 		return menu;
 	}catch(err){
@@ -109,7 +109,7 @@ if(1==1)
 
 componentDidMount() {
 	try{
-		console.log("init");
+		//console.log("init");
 	}catch(err){
 		console.error('Error en el get para llenar la tabla: ' + err);
 	}
