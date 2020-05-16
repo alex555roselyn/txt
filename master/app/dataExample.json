@@ -1,0 +1,38 @@
+[
+	{
+		"id":1,
+		"cuenta":"GT123-4567-12345",
+		"remitente":"gyt@gyt.com.gt",
+		"destinatario":"Usuario en swift",
+		"idTipoEnvio":"1",
+		"nombreTipoEnvio":"Correo electronico",
+		"direccionesEmail":"vreyes@icg.com.gt,v.reyes_93@hotmail.com,vreyest@miumg.edu.gt"
+	},
+	{
+		"id":2,
+		"cuenta":"SV456-5532-85696",
+		"remitente":"gyt@gyt.com.gt",
+		"destinatario":"Banco Chero",
+		"idTipoEnvio":"2",
+		"nombreTipoEnvio":"Envedido corrreo electronico",
+		"direccionesEmail":"vreyes@icg.com.gt,v.reyes_93@hotmail.com,vreyest@miumg.edu.gt"
+	},
+	{
+		"id":3,
+		"cuenta":"HN863-5789-65236",
+		"remitente":"gyt@gyt.com.gt",
+		"destinatario":"Banco Honduras",
+		"idTipoEnvio":"3",
+		"nombreTipoEnvio":"Swift",
+		"direccionesEmail":"vreyes@icg.com.gt,v.reyes_93@hotmail.com,vreyest@miumg.edu.gt"
+	},
+	{
+		"id":4,
+		"cuenta":"CR698-5899-69885",
+		"remitente":"gyt@gyt.com.gt",
+		"destinatario":"Banco Costa Rica",
+		"idTipoEnvio":"4",
+		"nombreTipoEnvio":"Adjunto en correo electronico",
+		"direccionesEmail":"vreyes@icg.com.gt,v.reyes_93@hotmail.com,vreyest@miumg.edu.gt"
+	}
+]
