@@ -1,141 +1,379 @@
 {
-  "contactos": [
+  "api": [
     {
-      "id": 1,
-      "nombre": "Alejandro",
-      "apellido": "Corado",
-      "estado": 1,
-      "def": 1
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": "holi nuevo cambio Ali sapien nibh. biri biri bamba",
+      "id": 1
     },
     {
-      "nombre": "juan",
-      "apellido": "perez",
-      "estado": 1,
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": "holi nuevo cambio Ali sapien nibh. biri biri bamba",
       "id": 2
     },
     {
-      "nombre": "aa",
-      "apellido": [],
-      "estado": 1,
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": "holi nuevo cambio Ali sapien nibh. biri biri bamba",
       "id": 3
     },
     {
-      "nombre": "aa",
-      "apellido": [],
-      "estado": 1,
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": "holi nuevo cambio Ali sapien nibh. biri biri bamba",
       "id": 4
     },
     {
-      "nombre": "aa",
-      "apellido": [],
-      "estado": 1,
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": "holi nuevo cambio Ali sapien nibh. biri biri bamba",
+      "id": 5
+    },
+    {
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": [],
       "id": 6
     },
     {
-      "nombre": "alejandro",
-      "apellido": "corado1",
-      "estado": 1,
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": "holi nuevo cambio Ali sapien nibh. biri biri bamba",
+      "id": 7
+    },
+    {
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": "holi nuevo cambio Ali sapien nibh. biri biri bamba",
+      "id": 8
+    },
+    {
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "26",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "27",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "28",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "23",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "24",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": [],
       "id": 9
     },
     {
-      "nombre": "juan",
-      "apellido": "lopez",
-      "estado": 1,
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": "holi nuevo cambio Ali sapien nibh. biri biri bamba",
       "id": 10
     },
     {
-      "nombre": "alejandro",
-      "apellido": [],
-      "estado": 1,
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": "holi nuevo cambio Ali sapien nibh. biri biri bamba",
       "id": 11
     },
     {
-      "nombre": "HOLA",
-      "apellido": "QUE TAL",
-      "estado": 1,
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "23",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "24",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "26",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "27",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "28",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": "Hola que hace",
       "id": 12
     },
     {
-      "nombre": "HOLA",
-      "apellido": "QUE TAL",
-      "estado": 0,
+      "destinations": [
+        {
+          "destination": "1",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "2",
+          "typedestination": "1",
+          "type": "1"
+        },
+        {
+          "destination": "25",
+          "typedestination": "1",
+          "type": "1"
+        }
+      ],
+      "priority": "1",
+      "sourcesystem": "010101",
+      "key": "12345",
+      "label": "GUITEXTERV2",
+      "message": "holi nuevo cambio Ali sapien nibh. biri biri bamba",
       "id": 13
-    },
-    {
-      "nombre": "alejandro",
-      "apellido": "palma",
-      "estado": 1,
-      "id": 14
-    },
-    {
-      "nombre": "alejandro",
-      "apellido": "corado",
-      "estado": 1,
-      "id": 15
-    },
-    {
-      "nombre": "luis",
-      "apellido": "pan",
-      "estado": 1,
-      "id": 16
-    },
-    {
-      "nombre": "aaaa",
-      "apellido": "bbbb",
-      "estado": 1,
-      "id": 17
-    },
-    {
-      "nombre": "al",
-      "apellido": "pachino",
-      "estado": 1,
-      "id": 18
-    },
-    {
-      "nombre": "hi",
-      "apellido": "la",
-      "estado": 1,
-      "id": 19
-    },
-    {
-      "nombre": "z",
-      "apellido": "s",
-      "estado": 1,
-      "id": 20
-    },
-    {
-      "nombre": "nuevo grup",
-      "apellido": "nuevo grup",
-      "estado": 1,
-      "id": 21
-    },
-    {
-      "nombre": "alejandro",
-      "apellido": "corado",
-      "estado": 1,
-      "id": 22
-    }
-  ],
-  "grupos": [
-    {
-      "id": 1,
-      "nombre": "Grupo 1",
-      "estado": 1
-    },
-    {
-      "id": 2,
-      "nombre": "ICG-OP",
-      "estado": 1
-    },
-    {
-      "nombre": "hola",
-      "estado": 1,
-      "id": 4
-    },
-    {
-      "nombre": "hola",
-      "estado": 1,
-      "id": 5
     }
   ]
 }
