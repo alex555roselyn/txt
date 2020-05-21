@@ -66,13 +66,13 @@ class Formularios extends Component {
 		selected:undefined,
 		fileName:'Seleccionar archivo csv',
 		keycloakConfig: {
-		"url":"http://104.198.180.31:8080/auth/",
-		"clientId":"clienttest",
+		"url": process.env.URI_KEYCLOAK,
+		"clientId":process.env.CLIENT,
 		  "ssl-required": "none",
 		   "verify-token-audience": true,
-		"realm":"TXTRV2",
+		"realm": process.env.REALM,
 				  "credentials": {
-    "secret": "6a868ea5-8fdd-4068-8262-580e49f2bb7e"
+    "secret": process.env.SECRET
   }
 },
 		baseApi: 'http://172.19.12.12:8080',
@@ -204,6 +204,16 @@ selectRow(row, isSelected){
 componentWillMount() {
 	try{
 		this.llenarGridData();
+var requestOptions = {
+  method: 'DELETE',
+  redirect: 'follow'
+};
+
+fetch("http://34.68.215.244:9200/_search/scroll/_all", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+		
 	}catch(err){
 		console.error('#ERROR Error en willMount de la pagina de formularios: ' + err);
 	}
@@ -226,11 +236,29 @@ llenarGridData(){
 	}else{}
 	try{
 
+
+var d = new Date();
+var date = d.getDate();
+var month = d.getMonth() + 1;
+var year = d.getFullYear();
+var dateStr = date + "/" + month + "/" + year;
+console.log(dateStr);
+var ech;
+
+if(month<10)
+{
+ech='0'+month;
+}
+
+else
+{
+	ech=month;
+}
+
+	
 	
 
-
-
-		axios.get('http://34.68.215.244:9200/texter-sms-sent-2020.05.12/_doc/_search?scroll=10m&size=50',{
+		axios.get(process.env.ELASTIC+'/texter-sms-sent-'+year+'.'+ech+'.*/_doc/_search?scroll=10m&size=1000',{
 			headers: {
 				//'Authorization': 'Bearer ' + Cookies("token")
 				//'Authorization' : 'Basic ZWxhc3RpYzpZcDlFaU9PVDZjOWY2V2lqMVlWNUlaMmI='
@@ -583,15 +611,15 @@ if(cadena=="G")
 
 objeto.destinations=datos;
 objeto.priority="1";
-objeto.sourcesystem="010101";
-objeto.key="12345";
-objeto.label="GUITEXTERV2";
+objeto.sourcesystem=process.env.SOURCE;
+objeto.key=process.env.KEY;
+objeto.label=process.env.LABEL;
 objeto.message=value
  
 //////console.log(objeto);
 
 
-fetch('http://localhost:999/api',{method:'POST',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(objeto) })
+fetch(process.env.URI_SEND,{method:'POST',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(objeto) })
 
 		
 			.then(response => {
@@ -664,7 +692,7 @@ cargargrupos()
 	var token = Cookies("token");
 
 		try{
-		axios.get('http://localhost:1012/grupos',{
+		axios.get(process.env.URI_APIS+'/grupos',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -733,7 +761,7 @@ var token = Cookies("token");
 
 
 	try{
-		axios.get('http://localhost:1012/contactos',{
+		axios.get(process.env.URI_APIS+'/contactos',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -898,7 +926,7 @@ var stat;
 
 
 
-axios.get('http://localhost:1012/plantillas/'+id,{
+axios.get(process.env.URI_APIS+'/plantillas/'+id,{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -926,7 +954,7 @@ this.setState({
 			);
 
 
-		axios.get('http://localhost:1012/plantillas/'+id+'/contactos',{
+		axios.get(process.env.URI_APIS+'/plantillas/'+id+'/contactos',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -969,7 +997,7 @@ var exchange=pcontactos[i].estado;
 
 if(exchange==1)
 {
-	axios.get('http://localhost:1012/contactos/'+pcontactos[i].id,{
+	axios.get(process.env.URI_APIS+'/contactos/'+pcontactos[i].id,{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -1047,7 +1075,7 @@ getPlantillas()
 
 dataPlantilla=[];
 
-axios.get('http://localhost:1012/plantillas',{
+axios.get(process.env.URI_APIS+'/plantillas',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}

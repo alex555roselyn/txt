@@ -42,6 +42,8 @@ class Contactos extends Component {
 	this.state = {
 		valor:'Activo',
 		agregarnumero:false,
+		tgid:'',
+		telegram:true,
 		phone:[],
 		contactsTab:[],
 		selectedRowKeys:[],
@@ -63,13 +65,13 @@ class Contactos extends Component {
 		selected:undefined,
 		fileName:'Seleccionar archivo csv',
 		keycloakConfig: {
-		"url":"http://104.198.180.31:8080/auth/",
-		"clientId":"texter",
-		  "ssl-required": "external",
+		"url": process.env.URI_KEYCLOAK,
+		"clientId":process.env.CLIENT,
+		  "ssl-required": "none",
 		   "verify-token-audience": true,
-		"realm":"master",
+		"realm": process.env.REALM,
 				  "credentials": {
-    "secret": "1960483a-0d67-4a7d-8294-d639a5c3d0b3"
+    "secret": process.env.SECRET
   }
 },
 		baseApi: 'http://172.19.12.12:8080',
@@ -176,6 +178,7 @@ this.desactivarapi=this.desactivarapi.bind(this);
 this.activarphone=this.activarphone.bind(this);
 this.activarapi=this.activarapi.bind(this);
 this.Okconfirm=this.Okconfirm.bind(this);
+this.edittelegram=this.edittelegram.bind(this);
 
 
 	//Configuracion del selecctor de los rows y el color en que se marcan
@@ -210,9 +213,13 @@ else
 					});
 }
 
+}
 
 
 
+edittelegram()
+{
+	this.setState({telegram: false});
 }
 
 
@@ -260,7 +267,7 @@ llenarGridData(){
 		filtro = 'propios:"'+idEntidad+'"';
 	}else{}
 	try{
-		axios.get('http://localhost:1012/contactos/',{
+		axios.get(process.env.URI_APIS+'/contactos/',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -287,6 +294,7 @@ for (var i = 0; i < data.length; i++) {
  var a=data[i].apellido;
  var z=data[i].estado;
  var s;
+ var s1=data[i].tgid;
 
 if(z==1)
 {
@@ -305,7 +313,8 @@ tables.push(
 "id" : x,
 "nombre" : y,
 "apellido": a,
-"estado" : s
+"estado" : s,
+"tgid": s1
 }
 	);
 
@@ -342,7 +351,7 @@ js.def=1;
 
 
 
-fetch('http://localhost:1012/contactos/'+this.state.selected.id,{method:'PUT',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(js) })
+fetch(process.env.URI_APIS+'/contactos/'+this.state.selected.id,{method:'PUT',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(js) })
 
 
 			.then(response => {
@@ -639,7 +648,7 @@ else
 
 
 
-fetch('http://localhost:1012/contactos/',{method:'POST',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(objeto) })
+fetch(process.env.URI_APIS+'/contactos/',{method:'POST',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(objeto) })
 
 		
 			.then(response => {
@@ -695,7 +704,7 @@ cargargrupos()
 	var token = Cookies("token");
 
 		try{
-		axios.get('http://localhost:1012/grupos',{
+		axios.get(process.env.URI_APIS+'/grupos',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -724,6 +733,9 @@ cargargrupos()
 cargarphone()
 {
 	var token = Cookies("token");
+	//console.log(this.state.selected.tgid);
+
+
 
 		try{
 
@@ -731,7 +743,7 @@ cargarphone()
 
 
 
-		axios.get('http://localhost:1012/contactos/'+this.state.selected.id+'/telefonos',{
+		axios.get(process.env.URI_APIS+'/contactos/'+this.state.selected.id+'/telefonos',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -810,7 +822,7 @@ var token = Cookies("token");
 
 
 	try{
-		axios.get('http://localhost:1012/contactos',{
+		axios.get(process.env.URI_APIS+'/contactos',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -873,7 +885,7 @@ for (var p = 0; p <2; p++) {
 			
 			//console.log(this.state.selected.nombre);
 
-			axios.get('http://localhost:1012/contactos/'+this.state.selected.id,{
+			axios.get(process.env.URI_APIS+'/contactos/'+this.state.selected.id,{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -886,7 +898,6 @@ for (var p = 0; p <2; p++) {
 //console.log(g1);
 
 this.setState({estado: g1.estado});
-
 
 
 
@@ -911,6 +922,7 @@ if(g1.estado==1)
 
 this.setState({edit:true,
 				gr: this.state.selected.nombre});
+document.getElementById('area_telegram').value=g1.tgid;
 
 
 });
@@ -926,7 +938,7 @@ this.setState({edit:true,
 cerrarModaledit(){
 	try{
 		this.setState({edit:false,
-			selectedRowKeys:[]
+			selectedRowKeys:[],telegram:true
 		});
 
 		tab2=[];
@@ -953,11 +965,12 @@ js.nombre=this.state.selected.nombre;
 js.apellido=this.state.selected.apellido;
 js.estado=this.state.estado;
 js.def=1;
+js.tgid=document.getElementById('area_telegram').value;
 
 
 //console.log(js);
 
-fetch('http://localhost:1012/contactos/'+this.state.selected.id,{method:'PUT',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(js) })
+fetch(process.env.URI_APIS+'/contactos/'+this.state.selected.id,{method:'PUT',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(js) })
 
 		
 			.then(res => {
@@ -996,7 +1009,7 @@ else
 
 
 		this.setState({edit:false,
-			selectedRowKeys:[]
+			selectedRowKeys:[],telegram:true
 		});
 
 		tab2=[];
@@ -1065,7 +1078,7 @@ objeto.compania=compania;
 objeto.estado=1;
 
 
-fetch('http://localhost:1012/contactos/'+this.state.selected.id+'/telefonos',{method:'POST',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(objeto) })
+fetch(process.env.URI_APIS+'/contactos/'+this.state.selected.id+'/telefonos',{method:'POST',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(objeto) })
 
 		
 			.then(res => {
@@ -1139,7 +1152,7 @@ objeto.estado=0;
 
 
 
-fetch('http://localhost:1012/contactos/'+this.state.selected.id+'/telefonos/'+id,{method:'PUT',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(objeto) })
+fetch(process.env.URI_APIS+'/contactos/'+this.state.selected.id+'/telefonos/'+id,{method:'PUT',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(objeto) })
 
 		
 			.then(res => {
@@ -1211,7 +1224,7 @@ if(arr.length>0)
 
 
 
-		axios.get('http://localhost:1012/contactos/'+this.state.selected.id+'/telefonos',{
+		axios.get(process.env.URI_APIS+'/contactos/'+this.state.selected.id+'/telefonos',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -1294,7 +1307,7 @@ objeto.estado=1;
 
 
 
-fetch('http://localhost:1012/contactos/'+this.state.selected.id+'/telefonos/'+id,{method:'PUT',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(objeto) })
+fetch(process.env.URI_APIS+'/contactos/'+this.state.selected.id+'/telefonos/'+id,{method:'PUT',headers:{'Content-Type': 'Application/json', 'Authorization':'Bearer ' + Cookies("token")},body: JSON.stringify(objeto) })
 
 		
 			.then(res => {
@@ -1416,7 +1429,7 @@ if(arr.length>0)
 
 
 
-		axios.get('http://localhost:1012/contactos/'+this.state.selected.id+'/telefonos',{
+		axios.get(process.env.URI_APIS+'/contactos/'+this.state.selected.id+'/telefonos',{
 			headers: {
 				'Authorization': 'Bearer ' + Cookies("token")
 			}
@@ -1560,6 +1573,10 @@ const columns = [
 
 
 
+
+
+
+
 const { value } = this.state;
 
 ////console.log(this.state.data);
@@ -1675,6 +1692,7 @@ const { value } = this.state;
 									<TableHeaderColumn width='30%' dataField='nombre' dataAlign="center" dataSort={true} >Nombre</TableHeaderColumn>
 									<TableHeaderColumn width='30%' dataField='apellido' dataAlign="center" dataSort={true} >Apellido</TableHeaderColumn>
 									<TableHeaderColumn width='25%' dataField='estado' dataAlign="center" dataSort={true} >Estado</TableHeaderColumn>
+										<TableHeaderColumn width='0%' dataField='tgid' dataAlign="center" dataSort={true} hidden='none' >Tgid</TableHeaderColumn>
 										
 								</BootstrapTable>
 							</Col>
@@ -1701,7 +1719,18 @@ const { value } = this.state;
 				<Divider orientation="right">Administración de Teléfonos</Divider>
 				
 &nbsp;<Button onClick={this.showagregar}>Nuevo</Button>&nbsp;<Button onClick={this.desactivarphone}>Desactivar</Button>&nbsp;<Button onClick={this.activarphone}>Activar</Button>
-			<Table columns={columns} rowSelection={rowSelection} dataSource={tab2} />,
+			<Table columns={columns} rowSelection={rowSelection} dataSource={tab2} />
+					<Divider orientation="left">Administración de Telegram</Divider>
+<Row>
+					<Col offset={0} span={5}><Button onClick={this.edittelegram}>Editar</Button>
+
+
+				<Input
+				id="area_telegram"
+				disabled={this.state.telegram}
+				/>		</Col>
+				</Row>
+	
 
 				</Modal>
 
